@@ -668,7 +668,9 @@ function Footer() {
         </div>
         <div className="mt-10 pt-6 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-[0.7rem] text-muted-warm/70">
           <span>© {new Date().getFullYear()} Dra. Paula Villena. Todos os direitos reservados.</span>
-          <span className="tracking-[0.2em] uppercase">Site feito com carinho</span>
+          <span className="tracking-[0.2em] uppercase">
+            Site feito por <a href="#" className="underline hover:text-copper transition-colors">FAZENDO ACONTECER</a>
+          </span>
         </div>
       </div>
     </footer>
