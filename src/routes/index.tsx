@@ -109,9 +109,10 @@ function Hero() {
         style={{ backgroundImage: `url(${bgpc})`, backgroundSize: "cover", backgroundPosition: "center" }} 
       />
       <div 
-        className="absolute inset-0 pointer-events-none md:hidden" 
+        className="absolute inset-x-0 bottom-0 top-16 pointer-events-none md:hidden" 
         style={{ backgroundImage: `url(${bgphone})`, backgroundSize: "cover", backgroundPosition: "top" }} 
       />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent pointer-events-none md:hidden" />
       
       <div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-background via-background/90 to-transparent pointer-events-none hidden md:block" />
       <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none md:hidden" />
