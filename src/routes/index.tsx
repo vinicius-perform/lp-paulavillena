@@ -43,6 +43,10 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:image", content: heroDoctor },
     ],
+    links: [
+      { rel: "preload", as: "image", href: bgphone, media: "(max-width: 767px)" },
+      { rel: "preload", as: "image", href: bgpc, media: "(min-width: 768px)" },
+    ],
   }),
   component: LandingPage,
 });
@@ -148,7 +152,7 @@ function Hero() {
                   "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
                   "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80"
                 ].map((s, i) => (
-                  <img key={i} src={s} alt="" className="h-9 w-9 rounded-full object-cover border-2 border-background" />
+                  <img key={i} src={s} alt="" loading="lazy" width={36} height={36} className="h-9 w-9 rounded-full object-cover border-2 border-background" />
                 ))}
               </div>
               <span>
@@ -198,6 +202,8 @@ function Results() {
                 src={it.img}
                 alt={it.tag}
                 loading="lazy"
+                width={640}
+                height={497}
                 className="w-full aspect-[640/497] object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
