@@ -124,7 +124,7 @@ function Hero() {
       <div className="floating-light" style={{ top: "35%", right: "18%", animationDelay: "4s" }} />
 
       <div className="container-premium relative z-10 w-full">
-        <div className="reveal-left max-w-3xl mx-auto md:mx-0 text-center md:text-left flex flex-col items-center md:items-start">
+        <div className="reveal-left max-w-3xl mx-auto md:mx-0 text-center md:text-left flex flex-col items-center md:items-start pt-[40vh] md:pt-0">
           <span className="eyebrow">Estética Médica · Harmonização Glútea</span>
           <h1 className="title-serif mt-6 text-[2.6rem] sm:text-6xl lg:text-[4.4rem] text-cream">
             Aumente o volume,
