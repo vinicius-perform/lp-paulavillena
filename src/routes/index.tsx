@@ -21,6 +21,8 @@ import result1 from "@/assets/result-1.jpg";
 import result2 from "@/assets/result-2.jpg";
 import result3 from "@/assets/result-3.jpg";
 import skinDetail from "@/assets/skin-detail.jpg";
+import bgpc from "@/assets/bgpc.webp";
+import bgphone from "@/assets/bgphone.webp";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export const Route = createFileRoute("/")({
@@ -64,8 +66,6 @@ function LandingPage() {
       <Hero />
       <Results />
       <VideoStories />
-      <Mirror />
-      <Desire />
       <Solution />
       <GoldIncision />
       <Planning />
@@ -103,15 +103,27 @@ function Nav() {
 /* -------------------------- HERO -------------------------- */
 function Hero() {
   return (
-    <section id="top" className="relative min-h-[100svh] flex items-center pt-28 pb-20 overflow-hidden">
-      <div className="bg-orb -top-32 -right-20" />
+    <section id="top" className="relative min-h-[100svh] flex items-end md:items-center pt-28 pb-12 md:pb-20 overflow-hidden">
+      <div 
+        className="absolute inset-0 pointer-events-none hidden md:block" 
+        style={{ backgroundImage: `url(${bgpc})`, backgroundSize: "cover", backgroundPosition: "center" }} 
+      />
+      <div 
+        className="absolute inset-0 pointer-events-none md:hidden" 
+        style={{ backgroundImage: `url(${bgphone})`, backgroundSize: "cover", backgroundPosition: "top" }} 
+      />
+      
+      <div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-background via-background/90 to-transparent pointer-events-none hidden md:block" />
+      <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none md:hidden" />
+      
+      <div className="bg-orb -top-32 -right-20 hidden md:block" />
       <div className="bg-orb -bottom-40 -left-20" style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--brown) 60%, transparent), transparent 65%)" }} />
       <div className="floating-light" style={{ top: "20%", left: "12%" }} />
       <div className="floating-light" style={{ top: "70%", left: "55%", animationDelay: "2s" }} />
       <div className="floating-light" style={{ top: "35%", right: "18%", animationDelay: "4s" }} />
 
-      <div className="container-premium relative z-10 grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
-        <div className="reveal-left">
+      <div className="container-premium relative z-10 w-full">
+        <div className="reveal-left max-w-3xl mx-auto md:mx-0 text-center md:text-left flex flex-col items-center md:items-start">
           <span className="eyebrow">Estética Médica · Harmonização Glútea</span>
           <h1 className="title-serif mt-6 text-[2.6rem] sm:text-6xl lg:text-[4.4rem] text-cream">
             Aumente o volume,
@@ -126,11 +138,15 @@ function Hero() {
             autoestima e transforma a forma como você se vê no espelho.
           </p>
 
-          <div className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="mt-9 flex flex-col items-center md:items-start gap-4">
             <WAButton label="Quero agendar minha consulta" />
             <div className="flex items-center gap-3 text-sm text-muted-warm">
               <div className="flex -space-x-2">
-                {[result1, result2, result3].map((s, i) => (
+                {[
+                  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
+                  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
+                  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80"
+                ].map((s, i) => (
                   <img key={i} src={s} alt="" className="h-9 w-9 rounded-full object-cover border-2 border-background" />
                 ))}
               </div>
@@ -146,28 +162,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="reveal-right relative">
-          <div className="absolute -inset-6 rounded-[40px] bg-gradient-to-br from-copper/20 via-transparent to-gold/10 blur-2xl" />
-          <div className="relative rounded-[32px] overflow-hidden gold-border gold-glow">
-            <img
-              src={heroDoctor}
-              alt="Dra. Paula Villena"
-              width={1024}
-              height={1280}
-              className="w-full h-[520px] sm:h-[640px] object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-              <div>
-                <div className="title-serif text-2xl text-cream">Dra. Paula Villena</div>
-                <div className="text-[0.7rem] tracking-[0.3em] uppercase text-copper mt-1">CRMSP 275104 · CRMCE 28379</div>
-              </div>
-              <div className="px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border gold-border text-[0.65rem] tracking-[0.25em] uppercase text-gold">
-                Premium
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );
@@ -176,9 +171,9 @@ function Hero() {
 /* -------------------------- RESULTS -------------------------- */
 function Results() {
   const items = [
-    { img: result1, tag: "Contorno & projeção" },
-    { img: result2, tag: "Firmeza & naturalidade" },
-    { img: result3, tag: "Volume harmônico" },
+    { img: "/contorno e projecao.webp", tag: "Contorno & projeção" },
+    { img: "/firmeza e naturalidade.webp", tag: "Firmeza & naturalidade" },
+    { img: "/volume harmonico.webp", tag: "Volume harmônico" },
   ];
   return (
     <section id="resultados" className="section-premium">
@@ -202,9 +197,7 @@ function Results() {
                 src={it.img}
                 alt={it.tag}
                 loading="lazy"
-                width={800}
-                height={1024}
-                className="w-full h-[480px] object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]"
+                className="w-full aspect-[640/497] object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border gold-border text-[0.62rem] tracking-[0.28em] uppercase text-gold">
@@ -228,9 +221,9 @@ function Results() {
 /* -------------------------- VIDEO STORIES -------------------------- */
 function VideoStories() {
   const videos = [
-    { img: result2, name: "Camila R.", text: "Naturalidade que eu sempre quis." },
-    { img: result1, name: "Beatriz L.", text: "Recuperei minha autoestima." },
-    { img: result3, name: "Marina S.", text: "Atendimento impecável." },
+    { url: "/depoimento1.webm", poster: "/thumb depoimento1.webp" },
+    { url: "/depoimento2.webm", poster: "/thumb depoimento2.webp" },
+    { url: "/depoimento3.webm", poster: "/thumb depoimento3.webp" },
   ];
   return (
     <section className="section-premium border-t border-border/40 bg-[color:var(--bg-dark)]">
@@ -246,116 +239,27 @@ function VideoStories() {
         </div>
 
         <div className="mt-14 grid md:grid-cols-3 gap-6">
-          {videos.map((v, i) => (
-            <button key={i} className="stagger-card group relative rounded-[28px] overflow-hidden gold-border aspect-[3/4] text-left">
-              <img src={v.img} alt={v.name} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-background/40" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-20 w-20 rounded-full border gold-border bg-background/40 backdrop-blur flex items-center justify-center transition-all group-hover:scale-110 group-hover:border-gold gold-glow">
-                  <Play className="h-7 w-7 text-gold ml-1" fill="currentColor" />
-                </div>
-              </div>
-              <div className="absolute bottom-5 left-5 right-5">
-                <div className="text-[0.65rem] tracking-[0.3em] uppercase text-copper">Depoimento</div>
-                <div className="title-serif text-2xl text-cream mt-1">{v.name}</div>
-                <div className="text-sm text-muted-warm mt-1">"{v.text}"</div>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------- MIRROR / PAIN -------------------------- */
-function Mirror() {
-  const bullets = [
-    "Flacidez que não melhora mesmo com treino.",
-    "Assimetria no formato do bumbum.",
-    "Celulites que atrapalham a aparência.",
-    "Depressão trocantérica (aquela marca lateral mesmo em quem já treina bastante).",
-    "Falta de volume, ausência de curvas e dificuldade de projeção.",
-  ];
-  return (
-    <section className="section-premium relative">
-      <div className="ghost-letters">espelho</div>
-      <div className="container-premium relative z-10 grid lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
-        <div className="reveal-left">
-          <span className="eyebrow">No espelho</span>
-          <h2 className="title-serif mt-5 text-4xl sm:text-5xl lg:text-6xl text-cream">
-            Você já se olhou no espelho e <span className="italic text-copper">não gostou</span> do que viu?
-          </h2>
-
-          <ul className="mt-9 space-y-4">
-            {bullets.map((b, i) => (
-              <li key={i} className="stagger-card flex items-start gap-4 p-4 rounded-2xl premium-card">
-                <span className="mt-1 h-2 w-2 rounded-full bg-copper shrink-0 shadow-[0_0_12px_var(--gold)]" />
-                <span className="text-cream/90">{b}</span>
-              </li>
-            ))}
-          </ul>
-
-          <p className="mt-8 text-muted-warm leading-relaxed max-w-xl">
-            Muitas mulheres relatam que, mesmo se dedicando na academia, não conseguem o
-            resultado que desejam no glúteo. Isso gera insegurança, vergonha de usar certas
-            roupas, biquínis e até impacto nos relacionamentos amorosos.
-          </p>
-          <p className="mt-4 text-cream">
-            <em className="title-serif text-xl text-gold">Mas existe uma solução médica, segura e imediata.</em>
-          </p>
-        </div>
-
-        <div className="reveal-right relative">
-          <div className="relative rounded-[32px] overflow-hidden gold-border">
-            <img src={mirrorConcept} alt="" loading="lazy" className="w-full h-[600px] object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-background via-background/20 to-transparent" />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------- DESIRE -------------------------- */
-function Desire() {
-  const items = [
-    { img: result1, title: "Bumbum firme", text: "Com sustentação e contorno definido." },
-    { img: result2, title: "Formato natural", text: "Em coração ou redondinho, conforme seu biotipo." },
-    { img: result3, title: "Redução de celulites", text: "Tratamento das irregularidades de pele." },
-    { img: skinDetail, title: "Volume & projeção", text: "Visíveis já após o procedimento." },
-  ];
-  return (
-    <section className="section-premium bg-[color:var(--bg-dark)] border-y border-border/40">
-      <div className="bg-orb top-10 right-10 opacity-50" />
-      <div className="container-premium relative z-10">
-        <div className="max-w-2xl reveal-up">
-          <span className="eyebrow">O desejo</span>
-          <h2 className="title-serif mt-5 text-4xl sm:text-5xl lg:text-6xl text-cream">
-            Você realmente <span className="italic text-copper">deseja</span> ter isso?
-          </h2>
-        </div>
-
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((it, i) => (
-            <div key={i} className="stagger-card group relative aspect-[3/4] rounded-[24px] overflow-hidden gold-border">
-              <img src={it.img} alt={it.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
-              <div className="absolute bottom-5 left-5 right-5">
-                <div className="title-serif text-xl text-cream">{it.title}</div>
-                <div className="text-xs text-muted-warm mt-1.5">{it.text}</div>
-              </div>
+          {videos.map((item, i) => (
+            <div key={i} className="stagger-card relative rounded-[28px] overflow-hidden gold-border aspect-[9/16] bg-background">
+              <video 
+                src={item.url} 
+                className="absolute inset-0 w-full h-full object-cover" 
+                controls
+                playsInline
+                preload="none"
+                poster={item.poster}
+              >
+                Seu navegador não suporta a reprodução deste vídeo.
+              </video>
             </div>
           ))}
         </div>
-
-        <div className="mt-14 flex justify-center reveal">
-          <WAButton label="Quero ter isso!" />
-        </div>
       </div>
     </section>
   );
 }
+
+
 
 /* -------------------------- SOLUTION / PROTOCOL -------------------------- */
 function Solution() {
@@ -497,27 +401,35 @@ function Planning() {
   return (
     <section className="section-premium">
       <div className="container-premium">
-        <div className="max-w-3xl reveal-up">
-          <span className="eyebrow">Planejamento</span>
-          <h2 className="title-serif mt-5 text-4xl sm:text-5xl lg:text-6xl text-cream">
-            Quando a GoldIncision® pode <span className="italic text-copper">fazer parte</span> do seu plano?
-          </h2>
-          <p className="mt-6 text-muted-warm leading-relaxed">
-            Cada paciente possui um tipo de pele, grau de celulite, flacidez, volume e expectativa
-            estética. Por isso, a Dra. Paula avalia individualmente se a GoldIncision® faz sentido
-            dentro do plano de harmonização glútea ou se outra estratégia é mais adequada para o seu caso.
-          </p>
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center reveal-up">
+          <div>
+            <span className="eyebrow">Planejamento</span>
+            <h2 className="title-serif mt-5 text-4xl sm:text-5xl lg:text-6xl text-cream">
+              Quando a GoldIncision® pode <span className="italic text-copper">fazer parte</span> do seu plano?
+            </h2>
+            <p className="mt-6 text-muted-warm leading-relaxed">
+              Cada paciente possui um tipo de pele, grau de celulite, flacidez, volume e expectativa
+              estética. Por isso, a Dra. Paula avalia individualmente se a GoldIncision® faz sentido
+              dentro do plano de harmonização glútea ou se outra estratégia é mais adequada para o seu caso.
+            </p>
+          </div>
+          <div className="relative rounded-[32px] overflow-hidden gold-border h-[300px] lg:h-[350px]">
+            <img 
+              src="/dra e chacur.webp" 
+              alt="Dra. Paula Villena e Dr. Chacur" 
+              className="w-full h-full object-cover" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+          </div>
         </div>
 
         <div className="mt-16 relative">
-          <div className="hidden lg:block absolute top-12 left-0 right-0 h-px gold-divider" />
-          <div className="grid lg:grid-cols-4 gap-8">
+          <div className="grid lg:grid-cols-4 gap-6">
             {steps.map((s, i) => (
-              <div key={i} className="stagger-card relative">
-                <div className="hidden lg:flex absolute -top-1 left-0 h-3 w-3 rounded-full bg-copper shadow-[0_0_16px_var(--gold)]" />
-                <div className="lg:pt-10">
-                  <div className="text-[0.65rem] tracking-[0.3em] uppercase text-copper">Etapa {s.n}</div>
-                  <h3 className="title-serif text-3xl text-cream mt-3">{s.t}</h3>
+              <div key={i} className="stagger-card premium-card p-6 flex flex-col justify-between">
+                <div>
+                  <div className="text-[0.65rem] tracking-[0.3em] uppercase text-copper font-semibold">Etapa {s.n}</div>
+                  <h3 className="title-serif text-2xl text-cream mt-3 leading-snug">{s.t}</h3>
                   <p className="mt-4 text-sm text-muted-warm leading-relaxed">{s.d}</p>
                 </div>
               </div>
@@ -537,20 +449,32 @@ function About() {
       <div className="container-premium relative z-10 grid lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
         <div className="reveal-left grid grid-cols-5 gap-4">
           <div className="col-span-3 rounded-[28px] overflow-hidden gold-border gold-glow">
-            <img src={doctorPortrait} alt="Dra. Paula Villena" loading="lazy" className="w-full h-[520px] object-cover" />
+            <img 
+              src="/dra paula.webp" 
+              onError={(e) => { e.currentTarget.src = doctorPortrait; }} 
+              alt="Dra. Paula Villena" 
+              loading="lazy" 
+              className="w-full h-[520px] object-cover object-[75%_top]" 
+            />
           </div>
           <div className="col-span-2 flex flex-col gap-4">
-            <div className="rounded-[24px] overflow-hidden gold-border">
-              <img src={doctorClinic} alt="" loading="lazy" className="w-full h-[250px] object-cover" />
+            <div className="rounded-[24px] overflow-hidden gold-border h-[250px]">
+              <img 
+                src="/sobre2.webp" 
+                onError={(e) => { e.currentTarget.src = doctorClinic; }} 
+                alt="" 
+                loading="lazy" 
+                className="w-full h-full object-cover" 
+              />
             </div>
-            <div className="premium-card p-5 flex-1 flex flex-col justify-center">
-              <Award className="h-5 w-5 text-gold" />
-              <div className="mt-3 text-[0.65rem] tracking-[0.3em] uppercase text-copper">CRM</div>
-              <div className="title-serif text-lg text-cream mt-1 leading-tight">
-                CRMSP 275104
-                <br />
-                CRMCE 28379
-              </div>
+            <div className="rounded-[24px] overflow-hidden gold-border h-[250px]">
+              <img 
+                src="/sobre3.webp" 
+                onError={(e) => { e.currentTarget.src = heroDoctor; }} 
+                alt="" 
+                loading="lazy" 
+                className="w-full h-full object-cover" 
+              />
             </div>
           </div>
         </div>
@@ -560,6 +484,9 @@ function About() {
           <h2 className="title-serif mt-5 text-4xl sm:text-5xl lg:text-[3.6rem] text-cream">
             <span className="italic text-copper">Dra. Paula</span> Villena
           </h2>
+          <div className="mt-2 text-xs tracking-[0.25em] uppercase text-copper font-medium">
+            CRMSP 275104 · CRMCE 28379
+          </div>
           <div className="mt-7 space-y-5 text-muted-warm leading-relaxed">
             <p>
               A Dra. Paula Villena é médica formada pela Unichristus, com pós-graduação em
