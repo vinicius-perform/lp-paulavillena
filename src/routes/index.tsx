@@ -51,7 +51,7 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const WHATSAPP_URL = "https://wa.me/5511999999999";
+const WHATSAPP_URL = "https://wa.link/kpyeey";
 
 function WAButton({ children, label }: { children?: React.ReactNode; label: string }) {
   return (
